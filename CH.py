@@ -158,51 +158,6 @@ if oct in name[-1]:
 if non in name[-1]:
     ch(9)
 
-nine = 9
-# if ico in name[-1]:
-#     for i in range(9):
-#         turn(left, False)
-#         count += 1
-#         print(count)
-#         turn(right, False)
-#         count += 1
-#         print(count)
-#     turn(left, False)
-#     count += 1
-#     print(count)
-
-    # if int(name[-3]) in numbers:
-    #     if int(name[-3]) == 4:
-    #         for i in range(nine):
-    #             if count == 4: #right here, check why this is ignored
-    #
-    #                 print('llego aqui')
-    #                 turn(left, True)
-    #                 turn(right, False)
-    #                 nine -= 1
-    #                 continue
-    #             turn(left, False)
-    #             count += 1
-    #             print(count)
-    #             turn(right, False)
-    #             count += 1
-    #             print(count)
-    #         turn(left, False)
-    #         count += 1
-    #         print(count)
-    #         pass
-
-
-    # for i in range(9):
-    #     turn(left, False)
-    #     count += 1
-    #     print(count)
-    #     turn(right, False)
-    #     count += 1
-    #     print(count)
-    # turn(left, False)
-    # count += 1
-    # print(count)
 
 if ico in name[-1]:
     if name[-3] == 0:
@@ -233,16 +188,3 @@ if ico in name[-1]:
 
 
 screen.mainloop()
-
-
-
-
-
-
-
-
-
-
-
-
-# draw_molecule('4 metil icosane')
