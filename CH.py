@@ -4,31 +4,6 @@ from time import sleep
 count = 1
 
 
-# def turn(direction, sustituyente):
-#     if not sustituyente and direction == 'Left':
-#         turtle.left(90)
-#         turtle.forward(50)
-#     if sustituyente and direction == 'Left':
-#         turtle.left(90)
-#         turtle.forward(50)
-#         turtle.left(45)
-#         turtle.forward(50)
-#         turtle.left(180)
-#         turtle.forward(50)
-#         turtle.left(135)
-#     if not sustituyente and direction == 'Right':
-#         turtle.right(90)
-#         turtle.forward(50)
-#     if sustituyente and direction == 'Right':
-#         turtle.right(90)
-#         turtle.forward(50)
-#         turtle.right(45)
-#         turtle.forward(50)
-#         turtle.right(180)
-#         turtle.forward(50)
-#         turtle.right(135)
-
-
 def triangulo(up=False, down=False):
     if not up and not down:
         turtle.left(90)
