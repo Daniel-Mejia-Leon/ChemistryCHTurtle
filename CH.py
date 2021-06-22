@@ -3,6 +3,7 @@ from time import sleep
 
 count = 1
 
+
 def turn(direction, sustituyente):
     if not sustituyente and direction == 'Left':
         turtle.left(90)
@@ -27,6 +28,7 @@ def turn(direction, sustituyente):
         turtle.forward(50)
         turtle.right(135)
 
+
 def triangulo(up=False, down=False):
     if not up and not down:
         turtle.left(90)
@@ -50,47 +52,79 @@ def triangulo(up=False, down=False):
         turtle.forward(50)
         turtle.right(135)
 
-def ch(number, sus=0, count=1):
+
+def up_sus(c_number=1):
+    if c_number == 1:
+        turtle.left(45)
+        turtle.forward(50)
+        turtle.left(180)
+        turtle.forward(50)
+        turtle.left(135)
+    if c_number == 2:
+        turtle.left(45)
+        turtle.forward(50)
+        turtle.left(90)
+        turtle.forward(50)
+        turtle.left(180)
+        turtle.forward(50)
+        turtle.right(90)
+        turtle.forward(50)
+        turtle.left(135)
+
+
+def down_sus(c_number):
+    if c_number == 1:
+        turtle.right(45)
+        turtle.forward(50)
+        turtle.right(180)
+        turtle.forward(50)
+        turtle.right(135)
+
+molecule = '3 - methyl, butane'
+
+# this function is to attach the sus on the main chain
+# the main chain function has the message for invalid sus_loc
+def ch(number, sus_loc=0, sus_len=0, count=1):
+    # if the number is 1 dont do anything since methane is just a dot
     if number == 1:
         turtle.left(90)
         pass
-    # for number of C
+    # for number of Carbons do up and down until number of carbons == count
     for i in range(number):
         # if C number is reached
         if count == number:
+            turtle.shape('circle')
+            turtle.shapesize(0.5)
             break
         turtle.left(90)
         turtle.forward(50)
         count += 1
-        # sus
-        if sus == count:
-            turtle.left(45)
-            turtle.forward(50)
-            turtle.left(180)
-            turtle.forward(50)
-            turtle.left(135)
+        # if sus_loc == count then proceed to create the sus_len sus
+        if sus_loc == count:
+            if sus_len == 2:
+                up_sus(2)
+            if sus_len == 1:
+                up_sus()
         # if sus == count CHECK THIS
         for n in range(number):
             # for number of C
             if count == number:
+                turtle.shape('circle')
+                turtle.shapesize(0.5)
                 break
             turtle.right(90)
             turtle.forward(50)
             count += 1
-            if sus == count:
-                turtle.right(45)
-                turtle.forward(50)
-                turtle.right(180)
-                turtle.forward(50)
-                turtle.right(135)
+            # start sus creation in position = count
+            if sus_loc == count:
+                down_sus(sus_len)
             break
     # variable global count if count == carbonos: stop!
 
 
 def chain(x):
-    # if the name is just a simple chaing
+    # if the name is just a simple chain
     if len(name) == 1:
-        print('llego aqui')
         if met in name[0]:
             ch(x)
         if et in name[0]:
@@ -115,30 +149,68 @@ def chain(x):
     if len(name) == 3:
         if name[-3] == 0:
             ch(x)
+        # here is where you have to put the invalid warning for sus_loc == number
+        if int(name[-3]) == 1:
+            print('invalid 1 cant be sus_loc')
         if int(name[-3]) == 2:
-            ch(x, 2)
-        if int(name[-3]) == 3:
-            ch(x, 3)
-        if int(name[-3]) == 4:
-            ch(x, 4)
-        if int(name[-3]) == 5:
-            ch(x, 5)
-        if int(name[-3]) == 6:
-            ch(x, 6)
-        if int(name[-3]) == 7:
-            ch(x, 7)
-        if int(name[-3]) == 8:
-            ch(x, 8)
-        if int(name[-3]) == 9:
-            ch(x, 9)
-        if int(name[-3]) == 10:
-            ch(x, 10)
-        if int(name[-3]) == 11:
-            ch(x, 11)
-        if int(name[-3]) == 12:
-            ch(x, 12)
+            if x == 2:
+                print('invalid, sus_loc cant be first nor final ')
+            else:
+                ch(x, int(name[-3]))
 
-molecule = 'icosne'
+        if int(name[-3]) == 3:
+            if x == 3:
+                print('invalid, sus_loc cant be first nor final ')
+            else:
+                ch(x, int(name[-3]))
+        if int(name[-3]) == 4:
+            if x == 4:
+                print('invalid, sus_loc cant be first nor final ')
+            else:
+                ch(x, int(name[-3]), 2)
+        if int(name[-3]) == 5:
+            if x == 5:
+                print('invalid, sus_loc cant be first nor final ')
+            else:
+                ch(x, int(name[-3]))
+        if int(name[-3]) == 6:
+            if x == 6:
+                print('invalid, sus_loc cant be first nor final ')
+            else:
+                ch(x, int(name[-3]))
+        if int(name[-3]) == 7:
+            if x == 7:
+                print('invalid, sus_loc cant be first nor final ')
+            else:
+                ch(x, int(name[-3]))
+        if int(name[-3]) == 8:
+            if x == 8:
+                print('invalid, sus_loc cant be first nor final ')
+            else:
+                ch(x, int(name[-3]))
+        if int(name[-3]) == 9:
+            if x == 9:
+                print('invalid, sus_loc cant be first nor final ')
+            else:
+                ch(x, int(name[-3]))
+        if int(name[-3]) == 10:
+            if x == 10:
+                print('invalid, sus_loc cant be first nor final ')
+            else:
+                ch(x, int(name[-3]))
+        if int(name[-3]) == 11:
+            if x == 11:
+                print('invalid, sus_loc cant be first nor final ')
+            else:
+                ch(x, int(name[-3]))
+        if int(name[-3]) == 12:
+            if x == 11:
+                print('invalid, sus_loc cant be first nor final ')
+            else:
+                ch(x, int(name[-3]))
+
+
+
 
 name = []
 numbers = range(1, 20)
@@ -175,10 +247,10 @@ screen_y = 600
 screen.setup(screen_x, screen_y)
 turtle.penup()
 turtle.shape()
-turtle.shapesize(2)
+turtle.shapesize(1.5)
 turtle.goto(-screen_x / 2 + 50, 0)
 turtle.pensize(2)
-turtle.speed(4)
+turtle.speed(1)
 turtle.pendown()
 turtle.right(45)
 
