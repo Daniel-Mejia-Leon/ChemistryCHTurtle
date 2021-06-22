@@ -86,7 +86,59 @@ def ch(number, sus=0, count=1):
             break
     # variable global count if count == carbonos: stop!
 
-molecule = '3 - metil ,icotane'
+
+def chain(x):
+    # if the name is just a simple chaing
+    if len(name) == 1:
+        print('llego aqui')
+        if met in name[0]:
+            ch(x)
+        if et in name[0]:
+            ch(x)
+        if prop in name[0]:
+            ch(x)
+        if but in name[0]:
+            ch(x)
+        if pent in name[0]:
+            ch(x)
+        if hex in name[0]:
+            ch(x)
+        if hept in name[0]:
+            ch(x)
+        if oct in name[0]:
+            ch(x)
+        if non in name[0]:
+            ch(x)
+        if ico in name[0]:
+            ch(x)
+    # if the name has 3 characters on it must be sus location-susType-chain#
+    if len(name) == 3:
+        if name[-3] == 0:
+            ch(x)
+        if int(name[-3]) == 2:
+            ch(x, 2)
+        if int(name[-3]) == 3:
+            ch(x, 3)
+        if int(name[-3]) == 4:
+            ch(x, 4)
+        if int(name[-3]) == 5:
+            ch(x, 5)
+        if int(name[-3]) == 6:
+            ch(x, 6)
+        if int(name[-3]) == 7:
+            ch(x, 7)
+        if int(name[-3]) == 8:
+            ch(x, 8)
+        if int(name[-3]) == 9:
+            ch(x, 9)
+        if int(name[-3]) == 10:
+            ch(x, 10)
+        if int(name[-3]) == 11:
+            ch(x, 11)
+        if int(name[-3]) == 12:
+            ch(x, 12)
+
+molecule = 'icosne'
 
 name = []
 numbers = range(1, 20)
@@ -103,7 +155,6 @@ for i in molecule_split:
 
 print(name)
 print(name[-1])
-
 
 met = 'Meth'
 et = 'Eth'
@@ -131,59 +182,38 @@ turtle.speed(4)
 turtle.pendown()
 turtle.right(45)
 
+
+
+
 if met in name[-1]:
-    ch(1)
+    chain(1)
 
 if et in name[-1]:
-    ch(2)
+    chain(2)
 
 if prop in name[-1]:
-    ch(3)
+    chain(3)
 
 if but in name[-1]:
-    ch(4)
+    chain(4)
 
 if pent in name[-1]:
-    ch(5)
+    chain(5)
 
 if hex in name[-1]:
-    ch(6)
+    chain(6)
 
 if hept in name[-1]:
-    ch(7)
+    chain(7)
 
 if oct in name[-1]:
-    ch(8)
+    chain(8)
 
 if non in name[-1]:
-    ch(9)
-
+    chain(9)
 
 if ico in name[-1]:
-    if name[-3] == 0:
-        ch(20)
-    if int(name[-3]) == 2:
-        ch(20, 2)
-    if int(name[-3]) == 3:
-        ch(20, 3)
-    if int(name[-3]) == 4:
-        ch(20, 4)
-    if int(name[-3]) == 5:
-        ch(20, 5)
-    if int(name[-3]) == 6:
-        ch(20, 6)
-    if int(name[-3]) == 7:
-        ch(20, 7)
-    if int(name[-3]) == 8:
-        ch(20, 8)
-    if int(name[-3]) == 9:
-        ch(20, 9)
-    if int(name[-3]) == 10:
-        ch(20, 10)
-    if int(name[-3]) == 11:
-        ch(20, 11)
-    if int(name[-3]) == 12:
-        ch(20, 12)
+    chain(20)
 
 
 
