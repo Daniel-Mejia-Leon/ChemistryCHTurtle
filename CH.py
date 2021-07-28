@@ -4,29 +4,112 @@ from time import sleep
 count = 1
 
 
-# NEXT STEP ADDDDDDDDDDDDDDDDDDD 2 SUS
+# TESTING X - NAME X - NAME
 
-def sus_len(x, direction, count=0):
+def alkyne(direction):
+    if direction == 'Up':
+        turtle.penup()
+        turtle.forward(5)
+        turtle.right(90)
+        turtle.forward(5)
+        turtle.pendown()
+        turtle.forward(40)
+        turtle.left(180)
+        turtle.penup()
+        turtle.forward(45)
+        turtle.left(90)
+        turtle.forward(10)
+
+        turtle.left(90)
+        turtle.forward(5)
+        turtle.pendown()
+        turtle.forward(40)
+        turtle.right(180)
+        turtle.penup()
+        turtle.forward(45)
+        turtle.right(90)
+        turtle.forward(5)
+
+        turtle.pendown()
+
+    elif direction == 'Down':
+        turtle.penup()
+        turtle.forward(5)
+        turtle.left(90)
+        turtle.forward(5)
+        turtle.pendown()
+        turtle.forward(40)
+        turtle.left(180)
+        turtle.penup()
+        turtle.forward(45)
+        turtle.right(90)
+        turtle.forward(10)
+
+        turtle.right(90)
+        turtle.forward(5)
+        turtle.pendown()
+        turtle.forward(40)
+        turtle.right(180)
+        turtle.penup()
+        turtle.forward(45)
+        turtle.left(90)
+        turtle.forward(5)
+        turtle.pendown()
+
+
+def alkene(direction):
+    if direction == 'Up':
+        turtle.penup()
+        turtle.forward(5)
+        turtle.right(90)
+        turtle.forward(5)
+        turtle.pendown()
+        turtle.forward(40)
+        turtle.left(180)
+        turtle.penup()
+        turtle.forward(45)
+        turtle.left(90)
+        turtle.forward(5)
+        turtle.left(180)
+        turtle.pendown()
+
+    elif direction == 'Down':
+        turtle.penup()
+        turtle.forward(5)
+        turtle.left(90)
+        turtle.forward(5)
+        turtle.pendown()
+        turtle.forward(40)
+        turtle.left(180)
+        turtle.penup()
+        turtle.forward(45)
+        turtle.right(90)
+        turtle.forward(5)
+        turtle.right(180)
+        turtle.pendown()
+
+
+def sus_len(sus_len, direction, count=0):
     if direction == 'Up':
         turtle.left(45)
-    if direction == 'Down':
+    elif direction == 'Down':
         turtle.right(45)
     count = 1
-    for i in range(x):
-        if count == x:  # this break only here since this for is the foward statement
+    for i in range(sus_len):
+        if count == sus_len:  # this break only here since this for is the foward statement
             print('first brek')
             break
         turtle.forward(50)
         count += 1
         turtle.right(90)
-        if count == x:  # this break only here since this for is the foward statement
+        if count == sus_len:  # this break only here since this for is the foward statement
             break
         turtle.forward(50)
         count += 1
         turtle.left(90)
     turtle.forward(50)
     turtle.left(180)
-    if x % 2 == 1:
+    if sus_len % 2 == 1:
         print('retocede')
         for i in range(count):  # going back statement
             if count == 1:
@@ -39,12 +122,13 @@ def sus_len(x, direction, count=0):
             turtle.forward(50)
             count -= 1
             turtle.left(90)
+
         turtle.forward(50)
         if direction == 'Up':
             turtle.left(135)
         if direction == 'Down':
             turtle.right(135)
-    if x % 2 == 0:
+    elif sus_len % 2 == 0:
         print('xx')
         for i in range(count):  # going back statement
             if count == 1:
@@ -57,6 +141,7 @@ def sus_len(x, direction, count=0):
             turtle.forward(50)
             count -= 1
             turtle.right(90)
+
         turtle.forward(50)
         if direction == 'Up':
             turtle.left(135)
@@ -64,8 +149,6 @@ def sus_len(x, direction, count=0):
             turtle.right(135)
 
 
-
-# this function is just to go up an down, i still need to work on this, dont midn for now
 def straight(x):
     if x == 'Up':
         turtle.left(90)
@@ -77,26 +160,47 @@ def straight(x):
 
 # this function is to attach the sus on the main chain
 # the main chain function has the message for invalid sus_loc
-def ch(number, sus_loc=0, sus_type=0, sus_loc_nd=0, count=1):
+def ch(number, sus_loc=0, sus_type=0, sus_loc_nd=0, ene=0, yne=0, count=1):
+    # ch(5, 2, 1, 0, 3)
     down = 'Down'
     up = 'Up'
-    print(str(sus_loc) + ' = sus_loc')
-    print(str(sus_type) + ' = sus_len')
-    print(str(sus_loc_nd) + ' = sus_loc_nd')
-    # if the number is 1 dont do anything since methane is just a dot
-
     if number == 1:
         turtle.left(90)
-        pass
+        return None
+    if ene >= number:
+        print('Double bond location cannot start at last carbon in chain')
+        return None
+    if yne == number:
+        print(f'triple bond location cannot start at last carbon in chain')
+        return None
+    if sus_loc == yne or sus_loc == yne + 1:
+        print('Not valid. Substituent must not start where triple bond starts or finishes')
+        return None
+    # this is to avoid changing chain size, if sus_len to large chain name changes
+    if sus_type > 0:  # > 0 because if no substituents no need to check
+        if sus_type >= sus_loc:
+            print('1Invalid, Substituent will change the chain name.\nSubstituent position and #C on substitutent must keep main chain name as entered')
+            return None
+        if sus_loc_nd > 0:
+            if sus_type >= sus_loc_nd:
+                print('2Invalid, Substituent will change the chain name.\nSubstituent position and #C on substitutent must keep main chain name as entered')
+                return None
+        if sus_type > number - sus_loc or sus_type > number - sus_loc_nd:
+            print('Invalid, Substituent will change the chain name.\nSubstituent position and #C on substitutent must keep main chain name as entered')
+            return None
+
+    print(f'{number} carbons in main chain')
+    print(f'{sus_type} carbons in Substituent')
+    print(f'{sus_loc} = first Substituent location')
+    print(f'{sus_loc_nd} = second Substituent location')
+    print(f'{ene} = double bond location')
+    print(f'{yne} = triple bond location')
     # for number of Carbons do up and down until number of carbons == count
     for i in range(number):
-        # this is to avoid changing chain size, if sus_len to large chain name changes
-        if sus_type > sus_loc:
-            print('Invalid, Sus will change the chain name.\nsus_loc must be greater than sus_len')
-            break
-        if sus_type > number - sus_loc:
-            print('Invalid, Sus will change the chain name.\nsus_len cant be greater than number - sus_loc')
-            break
+        if count == ene:
+            alkene(down)
+        if count == yne:
+            alkyne(down)
         # if C number is reached
         if count == number:
             turtle.shape('circle')
@@ -104,13 +208,15 @@ def ch(number, sus_loc=0, sus_type=0, sus_loc_nd=0, count=1):
             break
         straight(up)
         count += 1
-        # if sus_loc == count then proceed to create the sus_len sus
         if sus_loc == count:
             sus_len(sus_type, up)
         if sus_loc_nd == count:
             sus_len(sus_type, up)
-        # if sus == count CHECK THIS
         for n in range(number):
+            if count == ene:
+                alkene(up)
+            if count == yne:
+                alkyne(up)
             # for number of C
             if count == number:
                 turtle.shape('circle')
@@ -124,70 +230,109 @@ def ch(number, sus_loc=0, sus_type=0, sus_loc_nd=0, count=1):
             if sus_loc_nd == count:
                 sus_len(sus_type, down)
             break
-    # variable global count if count == carbonos: stop!
 
 
 def name_check(x):
     if met in x:
         return 1
-    if et in x:
+    elif et in x:
         return 2
-    if prop in x:
+    elif prop in x:
         return 3
-    if but in x:
+    elif but in x:
         return 4
-    if pent in x:
+    elif pent in x:
         return 5
-    if hex in x:
+    elif hex in x:
         return 6
-    if hept in x:
+    elif hept in x:
         return 7
-    if oct in x:
+    elif oct in x:
         return 8
-    if non in x:
+    elif non in x:
         return 9
-    if dec in x:
+    elif dec in x:
         return 10
-    if ico in x:
+    elif ico in x:
         return 20
 
 
 def number_of_carbons_on_main_chaing(x):
+    numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18',
+               '19', '20']
     # if the name is just a simple chain
-    # prefix = [met, et, prop, but, pent, hex, hept, oct, non, dec, 'Icosane'] # fix this part because we are supposed to use vars not strings
+    prefix = ['Met', 'Eth', 'Pro', 'But', 'Pen', 'Hex', 'Hep', 'Oct', 'Non', 'Dec',
+              'Ico']  # fix this part because we are supposed to use vars not strings
+    print(f'Length = {len(name)}')
     if len(name) == 1:
-        if met in name[0]:
+        if yl in name[0]:
+            print('Main chain cant be Substituent')
+        elif ane in name[0]:
             ch(x)
-        if et in name[0]:
-            ch(x)
-        if prop in name[0]:
-            ch(x)
-        if but in name[0]:
-            ch(x)
-        if pent in name[0]:
-            ch(x)
-        if hex in name[0]:
-            ch(x)
-        if hept in name[0]:
-            ch(x)
-        if oct in name[0]:
-            ch(x)
-        if non in name[0]:
-            ch(x)
-        if ico in name[0]:
-            ch(x)
+        elif ene in name[0]:
+            ch(x, 0, 0, 0, 1)
+        elif yne in name[0]:
+            ch(x, 0, 0, 0, 0, 1)
+        else:
+            print(f'Not valid')
+        # elif:
+        #     ch(x, 0, 0, 0, yne)
+        # print(f'If no substitutient, Carbons chain must be termination "ane"\nElse specify the double or triple bond as X-{name[0]}')
+
+    elif len(name) == 2:
+        # this is in case the input is x-methene/yne
+        if met in name[1]:  # 3 methene
+            print('Methane is a CH4, no option for x-METHene/yne')
+        elif ene in name[-1]:  # 2 pentene
+            ch(name_check(name[-1]), 0, 0, 0, int(name[-2]))
+        elif yne in name[-1]:  # 2 pentene
+            ch(name_check(name[-1]), 0, 0, 0, 0, int(name[-2]))
+        else:
+            print(f'Termination must be "ene/yne"\nOtherwise enter only the name of a simple C chain')
+
     # if the name has 3 characters on it must be sus location-susType-chain#
-    if len(name) == 3:
-        if name[-3] == 0:
-            ch(x)
-        #         print('invalid, sus_loc cant be first nor final ')
-        ch(x, int(name[-3]), name_check(name[-2]))
+    elif len(name) == 3:
+        if met in name[-1]:
+            print('Methane is a CH4, no option for x-METHene/yne')
+        elif ane in name[-1]:
+            if name[-3] == numbers[0]:
+                print('Substituent location cannot be 0 nor 1')
+            elif name[-3] == numbers[0]:
+                print('*Substituent location cannot be 0 nor 1')
+            else:
+                ch(x, int(name[-3]), name_check(name[-2]))
+        # ene no location given
+        elif ene in name[-1] and name[-2][0:3] in prefix:
+            ch(x, int(name[-3]), name_check(name[-2]), 0, 1)
 
-    if len(name) == 4:
-        ch(x, int(name[-3]), name_check(name[-2]), int(name[-4]))
+        elif yne in name[-1] and name[-2][0:3] in prefix:
+            ch(x, int(name[-3]), name_check(name[-2]), 0, 0, 1)
+
+    elif len(name) == 4:
+        if met in name[-1]:
+            print('Methane is a CH4, no option for x-METHene/yne')
+        # ex: 2 - 3 methyl pentane
+        elif ane in name[-1]:
+            if name[-4] not in numbers or name[-3] not in numbers or 'yl' not in name[-2]:
+                print('Invalid: number-number-Substituent-chain accepted only')
+            elif name[-2][0:3] in prefix:
+                print('2 times Substituent')
+                ch(x, int(name[-3]), name_check(name[-2]), int(name[-4]))
+            else:
+                print('Invalid: number-number-Substituent-chain accepted only')
 
 
-print('please input the name of the molecule in format\nnumber-substituentName-chain(ending in ane only)\nor\nnumber-number-(prefix)substituentName-chain(ending in ane only)')
+        # ex: 3 methyl 4 pentene
+        elif ene in name[-1]:
+            if name[-2] in numbers:
+                ch(name_check(name[-1]), int(name[-4]), name_check(name[-3]), 0, int(name[-2]))
+        # ex: 4 methyl 5 hexyne
+        elif yne in name[-1]:
+            if name[-2] in numbers:
+                ch(name_check(name[-1]), int(name[-4]), name_check(name[-3]), 0, 0, int(name[-2]))
+
+
+# print('please input the name of the molecule in format\nnumber-substituentName-chain(ending in ane only)\nor\nnumber-number-(prefix)substituentName-chain(ending in ane only)')
 molecule = input(': ')
 
 name = []
@@ -204,7 +349,7 @@ for i in molecule_split:
     name.append(i.capitalize())
 
 print(name)
-print(name[-1])
+print(f'Main chain = {name[-1]}')
 
 met = 'Meth'
 et = 'Eth'
@@ -221,65 +366,79 @@ dodec = 'Dodec'
 hexdec = 'hexadec'
 octadec = 'octadec'
 ico = 'Ico'
+##
+yl = 'yl'
+ane = 'ane'
+ene = 'ene'
+yne = 'yne'
 left = 'left'.capitalize()
 right = 'right'.capitalize()
+
 screen = turtle.Screen()
+screen.bgcolor('gray')
 screen_x = 800
 screen_y = 600
 screen.setup(screen_x, screen_y)
+# turtle.hideturtle()
 turtle.penup()
 turtle.shape()
 turtle.shapesize(1.5)
 turtle.goto(-screen_x / 2 + 50, 0)
 turtle.pensize(2)
-turtle.speed(10)
+turtle.speed(5)
 turtle.pendown()
 turtle.right(45)
+# print(f'Turtle pos = {turtle.pos()}')
+sleep(2)
 
-if met in name[-1]:
-    number_of_carbons_on_main_chaing(1)
+try:
+    if met in name[-1]:
+        number_of_carbons_on_main_chaing(1)
 
-if et in name[-1]:
-    number_of_carbons_on_main_chaing(2)
+    elif et in name[-1]:
+        number_of_carbons_on_main_chaing(2)
 
-if prop in name[-1]:
-    number_of_carbons_on_main_chaing(3)
+    elif prop in name[-1]:
+        number_of_carbons_on_main_chaing(3)
 
-if but in name[-1]:
-    number_of_carbons_on_main_chaing(4)
+    elif but in name[-1]:
+        number_of_carbons_on_main_chaing(4)
 
-if pent in name[-1]:
-    number_of_carbons_on_main_chaing(5)
+    elif pent in name[-1]:
+        number_of_carbons_on_main_chaing(5)
 
-if hex in name[-1]:
-    number_of_carbons_on_main_chaing(6)
+    elif hex in name[-1]:
+        number_of_carbons_on_main_chaing(6)
 
-if hept in name[-1]:
-    number_of_carbons_on_main_chaing(7)
+    elif hept in name[-1]:
+        number_of_carbons_on_main_chaing(7)
 
-if oct in name[-1]:
-    number_of_carbons_on_main_chaing(8)
+    elif oct in name[-1]:
+        number_of_carbons_on_main_chaing(8)
 
-if non in name[-1]:
-    number_of_carbons_on_main_chaing(9)
+    elif non in name[-1]:
+        number_of_carbons_on_main_chaing(9)
 
-if dec in name[-1]:
-    number_of_carbons_on_main_chaing(10)
+    elif dec in name[-1]:
+        number_of_carbons_on_main_chaing(10)
 
-# i am not activating this because undec has dec so it will recognized as 10 not 11, i still need to fix this
-# if undec in name[-1]:
-#     number_of_carbons_on_main_chaing(11)
-#
-# if dodec in name[-1]:
-#     number_of_carbons_on_main_chaing(12)
-#
-# if hexdec in name[-1]:
-#     number_of_carbons_on_main_chaing(16)
-#
-# if octadec in name[-1]:
-#     number_of_carbons_on_main_chaing(18)
+    # i am not activating this because undec has dec so it will recognized as 10 not 11, i still need to fix this
+    # if undec in name[-1]:
+    #     number_of_carbons_on_main_chaing(11)
+    #
+    # if dodec in name[-1]:
+    #     number_of_carbons_on_main_chaing(12)
+    #
+    # if hexdec in name[-1]:
+    #     number_of_carbons_on_main_chaing(16)
+    #
+    # if octadec in name[-1]:
+    #     number_of_carbons_on_main_chaing(18)
 
-if ico in name[-1]:
-    number_of_carbons_on_main_chaing(20)
+    elif ico in name[-1]:
+        number_of_carbons_on_main_chaing(20)
+except TypeError:
+    print('Double check if correctly written')
 
+turtle.hideturtle()
 screen.mainloop()
