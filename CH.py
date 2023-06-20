@@ -173,7 +173,7 @@ def ch(number, sus_loc=0, sus_type=0, sus_loc_nd=0, ene=0, yne=0, count=1):
     if yne == number:
         print(f'triple bond location cannot start at last carbon in chain')
         return None
-    if sus_loc == yne or sus_loc == yne + 1:
+    if sus_loc != 0 and sus_loc == yne or sus_loc != 0 and sus_loc == yne + 1:
         print('Not valid. Substituent must not start where triple bond starts or finishes')
         return None
     # this is to avoid changing chain size, if sus_len to large chain name changes
